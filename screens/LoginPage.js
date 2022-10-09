@@ -17,7 +17,6 @@ export default function LoginPage({navigation}) {
       <Center flex={1} px="3">
         <Stack space={4} w="85%" maxW="300px" mx="auto">
           <Center>
-            {/* <Text style={styles.text}>Login</Text> */}
             <AspectRatio ratio={{base: 3 / 4,md: 9 / 10
               }} height={{base: 250,md: 400
             }}>
@@ -40,7 +39,7 @@ export default function LoginPage({navigation}) {
             value={password}
             onChangeText={(e)=>{setPassword(e)}}
           />
-          <Button style={styles.button} size="lg" colorScheme="blue" onPress={printStates}>
+          <Button style={styles.button} size="lg" colorScheme="blue" onPress={() => navigation.navigate('AddCarPage')}>
             Login
           </Button>
 
@@ -55,11 +54,6 @@ export default function LoginPage({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    // text: {
-    //     color: 'blue',
-    //     fontSize: 40,
-    //     paddingBottom: 20
-    // },
     sign: {
       color: 'blue',
         fontSize: 12,

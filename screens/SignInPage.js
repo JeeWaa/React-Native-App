@@ -56,7 +56,7 @@ export default function SignInPage({navigation}) {
             value={email}
             onChangeText={(e)=>{setEmail(e)}}
           />
-          <Button style={styles.button} size="lg" colorScheme="blue" onPress={printStates}>
+          <Button style={styles.button} size="lg" colorScheme="blue" onPress={() => navigation.navigate('AddCarPage')}>
             Sign In
           </Button>
 
