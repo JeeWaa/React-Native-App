@@ -1,20 +1,22 @@
 import { View, StyleSheet } from 'react-native'
 import { React, useState} from 'react'
-import { Button, Center, Image, Input, NativeBaseProvider, Stack } from 'native-base';
+import { Button, Center, Image, Input, NativeBaseProvider, Stack, TextArea } from 'native-base';
 
 
-export default function AddCarPage() {
+export default function AddCarPage({navigation}) {
 
     const [phote,setPhote] = useState("");
     const [name,setName] = useState("");
     const [type,setType] = useState("");
     const [number,setNumber] = useState("");
+    const [price,setPrice] = useState("");
 
     const printStates=()=>{
         console.log(phote);
         console.log(name);
         console.log(type);
         console.log(number);
+        console.log(price);
     }
 
   return (
@@ -25,14 +27,14 @@ export default function AddCarPage() {
             alt="Car" 
             size="xl" 
             width={330}
-            height={200}
+            height={180}
             borderRadius={10}
             backgroundColor={'blue.100'}
             margin={3}
         />
 
         <Stack space={4} w="94%" maxW="330px" mx="auto">
-        <Button style={styles.upload} size="lg" colorScheme="blue" variant="outline" colorScheme="secondary" onPress={''}>
+        <Button style={styles.upload} size="lg" variant="outline" colorScheme="secondary" onPress={''}>
             Upload Photo
         </Button>
         <Input 
@@ -53,8 +55,14 @@ export default function AddCarPage() {
             value={number}
             onChangeText={(e)=>{setNumber(e)}}
         />
+        <Input 
+            variant="rounded" 
+            placeholder="Price" 
+            value={price}
+            onChangeText={(e)=>{setPrice(e)}}
+        />
 
-        <Button style={styles.button} size="lg" colorScheme="secondary" onPress={printStates}>
+        <Button style={styles.button} size="lg" colorScheme="secondary" onPress={() => navigation.navigate('Cars')}>
             Save
         </Button>
         </Stack>
@@ -66,7 +74,7 @@ export default function AddCarPage() {
 const styles = StyleSheet.create({
     button: {
         borderRadius: 20,
-        marginTop: 40
+        marginTop: 10
       },
     upload: {
         borderRadius: 20
