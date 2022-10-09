@@ -1,9 +1,8 @@
 import { View, StyleSheet } from 'react-native'
-import { React, useState} from 'react'
+import { React, useEffect, useState} from 'react'
 import { Button, Center, Image, Input, NativeBaseProvider, Stack, TextArea } from 'native-base';
 
-
-export default function AddCarPage({navigation}) {
+export default function ManageCarPage({navigation,route}) {
 
     const [phote,setPhote] = useState("");
     const [name,setName] = useState("");
@@ -19,22 +18,36 @@ export default function AddCarPage({navigation}) {
         console.log(price);
     }
 
+    useEffect(()=>{
+        setPhote(route.params.object.car)
+        setName(route.params.object.name)
+        setType(route.params.object.type)
+        setNumber(route.params.object.number)
+        setPrice(route.params.object.price+'')
+
+        console.log(phote);
+        console.log(name);
+        console.log(type);
+        console.log(number);
+        console.log(price);
+    })
+
   return (
     <NativeBaseProvider>
         <Center>
         <Image style={styles.Image} shadow={5} 
-            source={{uri: 'https://web2.wheelz.me/wp-content/uploads/2021/03/Patrick-Patrikios-Lotus-Evija-and-Lotus-Type-429.jpg'}} 
+            source={{uri: phote}} 
             alt="Car" 
             size="xl" 
             width={330}
-            height={200}
+            height={150}
             borderRadius={10}
             backgroundColor={'blue.100'}
             margin={3}
         />
 
         <Stack space={4} w="94%" maxW="330px" mx="auto">
-        <Button style={styles.upload} size="lg" variant="outline" colorScheme="secondary" onPress={''}>
+        <Button style={styles.upload} size="lg" variant="outline" colorScheme="secondary" onPress={() => console.log(price)}>
             Upload Photo
         </Button>
         <Input 
@@ -60,10 +73,14 @@ export default function AddCarPage({navigation}) {
             placeholder="Price" 
             value={price}
             onChangeText={(e)=>{setPrice(e)}}
+            
         />
 
-        <Button style={styles.button} size="lg" colorScheme="secondary" onPress={() => navigation.navigate('Cars')}>
-            Save
+        <Button style={styles.update} size="lg" onPress={() => navigation.navigate('Cars')}>
+            Update
+        </Button>
+        <Button style={styles.delete} size="lg" colorScheme="secondary" onPress={() => navigation.navigate('Cars')}>
+            Delete
         </Button>
         </Stack>
         </Center>
@@ -72,9 +89,13 @@ export default function AddCarPage({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    button: {
+    update: {
         borderRadius: 20,
-        marginTop: 10
+        marginTop: 0
+      },
+    delete: {
+        borderRadius: 20,
+        marginTop: -10
       },
     upload: {
         borderRadius: 20

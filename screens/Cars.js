@@ -54,10 +54,10 @@ const DATA = [
     
 ];
 
-export default function Cars() {
+export default function Cars({navigation}) {
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ManageCarPage',{object:item})}>
             <View  style={styles.item}>
             <NativeBaseProvider>
             <Image shadow={5} 
@@ -68,7 +68,7 @@ export default function Cars() {
                 width={170}
                 height={140}
             />
-            <View style={styles.view}>
+            <View style={styles.view} >
                     <Text style={styles.names}>{item.name}</Text>
                     <Text style={styles.type}>{item.type}</Text>
                     <Text style={styles.number}>{item.number}</Text>
